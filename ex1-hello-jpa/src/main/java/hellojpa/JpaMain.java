@@ -41,14 +41,21 @@ public class JpaMain {
             */
 
             /*JPQL 조회*/
-            List<Member> result = entityManager.createQuery("select m from Member as m", Member.class)
+            /*List<Member> result = entityManager.createQuery("select m from Member as m", Member.class)
                     .setFirstResult(5)  //pagenation
                     .setMaxResults(8)
                     .getResultList();
                 for(Member member : result){
                     System.out.println("member.name = " + member.getName());
-                }
-            
+                }*/
+
+            Member member = entityManager.find(Member.class, 150L);
+            member.setName("AAAA");
+
+            entityManager.detach(member); //특정 엔티티를 준영속 상태로 전환
+            entityManager.clear(); //영속성 컨텍스트를 초기화
+            entityManager.close(); //영속성 컨텍스트를 닫기. 데이터를 변경해도 저장이 되지않음
+
             tx.commit();
         } catch (Exception e){
             tx.rollback();
