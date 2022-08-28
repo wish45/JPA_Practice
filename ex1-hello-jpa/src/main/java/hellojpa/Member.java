@@ -1,28 +1,35 @@
 package hellojpa;
 
-import javax.persistence.Entity;
-import javax.persistence.Id;
+import javax.persistence.*;
+import java.util.Date;
 
 @Entity
 public class Member {
 
     @Id
-    private long id;
-    private String name;
+    @GeneratedValue(strategy = GenerationType.IDENTITY)//자동 증가
+    private Long id;
 
-    public long getId() {
+    @Column(name = "name", nullable = false)
+    private String username;
+
+    public Member(){
+        
+    }
+
+    public Long getId() {
         return id;
     }
 
-    public String getName() {
-        return name;
-    }
-
-    public void setId(long id) {
+    public void setId(Long id) {
         this.id = id;
     }
 
-    public void setName(String name) {
-        this.name = name;
+    public String getUsername() {
+        return username;
+    }
+
+    public void setUsername(String username) {
+        this.username = username;
     }
 }

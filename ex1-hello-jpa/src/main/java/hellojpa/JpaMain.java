@@ -50,7 +50,7 @@ public class JpaMain {
                 }*/
 
             Member member = entityManager.find(Member.class, 150L);
-            member.setName("AAAA");
+            member.setUsername("AAAA");
 
             entityManager.detach(member); //특정 엔티티를 준영속 상태로 전환
             entityManager.clear(); //영속성 컨텍스트를 초기화
